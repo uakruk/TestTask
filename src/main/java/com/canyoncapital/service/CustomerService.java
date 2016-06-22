@@ -16,7 +16,22 @@ import com.stripe.net.RequestOptions;
  */
 public interface CustomerService {
 
+    /**
+     * create customer without a card
+     * @param email customer's email
+     * @param fullName customer's full name will be used as descrition
+     * @param requestOptions request options
+     * @return customer has being created
+     */
     Customer createCustomer(String email, String fullName, RequestOptions requestOptions);
 
+    /**
+     * attach a card by it's token to the customer. Some bicycles with apiKey (Request options
+     * are not suitable here because of such library implementation
+     * @param customer  customer to be charged
+     * @param cardToken card token
+     * @param apiKey    api key
+     * @return a card was attached to the customer
+     */
     Card addCard(Customer customer, Token cardToken, String apiKey);
 }

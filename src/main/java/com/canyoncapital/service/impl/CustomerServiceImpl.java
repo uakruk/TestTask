@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Customer Service Implementation
  * @author Yaroslav Kruk on 6/22/16.
  *         e-mail: yakruck@gmail.com
  *         GitHub: https://github.com/uakruk
@@ -24,6 +25,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     private static Logger logger = Logger.getLogger(CustomerService.class.getName());
 
+    /**
+     *
+     * @param email customer's email
+     * @param fullName customer's full name will be used as descrition
+     * @param requestOptions request options
+     * @return created customer
+     */
     @Override
     public Customer createCustomer(String email, String fullName, RequestOptions requestOptions) {
         Map<String, Object> customerParams = new HashMap<>();
@@ -50,6 +58,13 @@ public class CustomerServiceImpl implements CustomerService {
         return resp;
     }
 
+    /**
+     *
+     * @param customer  customer to be charged
+     * @param cardToken card token
+     * @param apiKey    api key
+     * @return attached card
+     */
     @Override
     public Card addCard(Customer customer, Token cardToken, String apiKey) {
         Map<String, Object> params = new HashMap<>();

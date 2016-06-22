@@ -22,13 +22,22 @@ public interface ChargeService {
      * @param amount amount of charge
      * @param currency currency
      * @param cardToken card token
-     * @param description desription of charge
-     * @param requestOptions request charge
+     * @param description description of charge
+     * @param requestOptions request options
      * @return performed charge
      */
     Charge makeCharge(long amount, Currency currency, Token cardToken, String description,
                                                                 RequestOptions requestOptions);
 
+    /**
+     * make charge by customer
+     * @param amount amount of charge
+     * @param currency currency
+     * @param customer customer
+     * @param description description of charge
+     * @param requestOptions request options
+     * @return performed charge
+     */
     Charge makeCharge(long amount, Currency currency, Customer customer, String description,
                       RequestOptions requestOptions);
 }

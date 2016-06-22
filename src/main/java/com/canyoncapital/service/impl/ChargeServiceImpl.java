@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Charge Service Implementation
  * @author Yaroslav Kruk on 6/22/16.
  *         e-mail: yakruck@gmail.com
  *         GitHub: https://github.com/uakruk
@@ -23,8 +24,18 @@ import java.util.logging.Logger;
  */
 public class ChargeServiceImpl implements ChargeService {
 
+    // logger for this class
     private static Logger logger = Logger.getLogger(ChargeService.class.getName());
 
+    /**
+     *
+     * @param amount amount of charge
+     * @param currency currency
+     * @param cardToken card token
+     * @param description desription of charge
+     * @param requestOptions request charge
+     * @return performed charge
+     */
     @Override
     public Charge makeCharge(long amount, Currency currency, Token cardToken, String description,
                                                                            RequestOptions requestOptions) {
@@ -34,25 +45,34 @@ public class ChargeServiceImpl implements ChargeService {
         return charge(chargeParams, requestOptions);
     }
 
+    /**
+     *
+     * @param amount amount of charge
+     * @param currency currency
+     * @param customer customer
+     * @param description description of charge
+     * @param requestOptions request options
+     * @return performed charge
+     */
     @Override
     public Charge makeCharge(long amount, Currency currency, Customer customer, String description,
                              RequestOptions requestOptions) {
         Map<String, Object> chargeParams = getChargeParams(amount, currency, description);
-      //  chargeParams.put("card", card.getId());
         chargeParams.put("customer", customer.getId());
         return charge(chargeParams, requestOptions);
     }
 
+    // creating map with charge parameters
     private Map<String, Object> getChargeParams(long amount, Currency currency, String description) {
         Map<String, Object> chargeParams = new HashMap<>();
 
         chargeParams.put("amount", amount);
         chargeParams.put("currency", currency.toString());
-
         chargeParams.put("description", description);
         return chargeParams;
     }
 
+    // main charge method
     private Charge charge(Map<String, Object> chargeParams, RequestOptions requestOptions) {
         Charge resp = null;
 

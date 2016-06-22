@@ -5,6 +5,7 @@ import com.canyoncapital.service.impl.ChargeServiceImpl;
 import com.canyoncapital.service.impl.CustomerServiceImpl;
 
 /**
+ * A factory for the services
  * @author Yaroslav Kruk on 6/22/16.
  *         e-mail: yakruck@gmail.com
  *         GitHub: https://github.com/uakruk

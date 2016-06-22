@@ -5,17 +5,16 @@ import com.canyoncapital.service.ChargeService;
 import com.canyoncapital.service.CustomerService;
 import com.canyoncapital.service.ServiceFactory;
 import com.canyoncapital.util.Currency;
-import com.stripe.exception.StripeException;
+
 import com.stripe.model.Card;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
 import com.stripe.model.Token;
 import com.stripe.net.RequestOptions;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
+ * A class performing the task
  * @author Yaroslav Kruk on 6/22/16.
  *         e-mail: yakruck@gmail.com
  *         GitHub: https://github.com/uakruk
@@ -25,8 +24,6 @@ import java.util.logging.Logger;
 public class PaymentWorker {
 
     private final String API_KEY;
-
-    private static Logger logger = Logger.getLogger(PaymentWorker.class.getName());
 
     private RequestOptions requestOptions;
 
@@ -79,5 +76,4 @@ public class PaymentWorker {
         System.out.println(charge2);
         System.err.println("Successfully created the charge 2");
     }
-
 }

@@ -1,10 +1,7 @@
 import com.canyoncapital.PaymentWorker;
-import com.canyoncapital.util.Currency;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
+ * Main class
  * @author Yaroslav Kruk on 6/22/16.
  *         e-mail: yakruck@gmail.com
  *         GitHub: https://github.com/uakruk
