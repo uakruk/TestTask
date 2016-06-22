@@ -1,6 +1,10 @@
 package com.canyoncapital.dto;
 
 /**
+ *
+ * This interface used for retrieving user's data from a web page
+ * actually, it's not implemented & used yet.
+ *
  * @author Yaroslav Kruk on 6/22/16.
  *         e-mail: yakruck@gmail.com
  *         GitHub: https://github.com/uakruk
