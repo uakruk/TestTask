@@ -5,12 +5,14 @@ import com.canyoncapital.service.ChargeService;
 import com.canyoncapital.service.CustomerService;
 import com.canyoncapital.service.ServiceFactory;
 import com.canyoncapital.util.Currency;
+import com.stripe.exception.StripeException;
 import com.stripe.model.Card;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
 import com.stripe.model.Token;
 import com.stripe.net.RequestOptions;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -56,15 +58,26 @@ public class PaymentWorker {
         Customer customer = customerService.createCustomer(email, fullName, requestOptions);
         System.out.println(customer);
         System.err.println("Successfully created the customer");
+
         Token cardToken = cardService.createCard(cardNumber, expMonth, expYear, cvc, requestOptions);
         System.out.println(cardToken);
-        System.err.println("Successfully created the card token");
-   //     Card card = customerService.addCard(customer, cardToken);
-  //      System.out.println(card);
-        System.err.println("Successfully added the card to the user");
+        System.err.println("Successfully created the card token 1");
+
         Charge charge = chargeService.makeCharge(amount, currency, cardToken, description, requestOptions);
         System.out.println(charge);
-        System.err.println("Successfully performed the charge");
+        System.err.println("Successfully created the charge");
+
+        Token cardToken2 = cardService.createCard(cardNumber, expMonth-1, expYear-1, cvc-1, requestOptions);
+        System.out.println(cardToken2);
+        System.err.println("Successfully created the card token 2");
+
+        Card card = customerService.addCard(customer, cardToken2, API_KEY);
+        System.out.println(card);
+        System.err.println("Successfully added the card token 2 to the user");
+
+        Charge charge2 = chargeService.makeCharge(amount, currency, customer, description, requestOptions);
+        System.out.println(charge2);
+        System.err.println("Successfully created the charge 2");
     }
 
 }

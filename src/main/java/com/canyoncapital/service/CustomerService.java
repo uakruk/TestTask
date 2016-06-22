@@ -18,5 +18,5 @@ public interface CustomerService {
 
     Customer createCustomer(String email, String fullName, RequestOptions requestOptions);
 
-    Card addCard(Customer customer, Token cardToken);
+    Card addCard(Customer customer, Token cardToken, String apiKey);
 }

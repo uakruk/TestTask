@@ -31,7 +31,6 @@ public class CustomerServiceImpl implements CustomerService {
         customerParams.put("description", fullName);
 
         Customer resp = null;
-
         try {
             resp = Customer.create(customerParams, requestOptions);
         } catch (CardException e) {
@@ -52,10 +51,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Card addCard(Customer customer, Token cardToken) {
+    public Card addCard(Customer customer, Token cardToken, String apiKey) {
         Map<String, Object> params = new HashMap<>();
         params.put("source", cardToken.getId());
-
+        Stripe.apiKey = apiKey;
         Card resp = null;
 
         try {
